@@ -1,0 +1,81 @@
+/*==========================Login page==============================*/
+.content .logo{
+    width: 120px;
+    height: 120px;
+    margin-top: 5px;
+}
+.content .pattern{
+  height: 250px;  
+  margin-top:-17px;
+  margin-right: -66px;
+  
+}
+body{
+   /* background-image:url("../img/soon1.jpeg");*/
+    background-repeat: no-repeat ;
+    background-size: cover;
+    
+    
+}
+.content{
+    overflow-x: hidden;
+}
+.login{
+width: 350px;
+height: 350px;
+margin: auto;
+text-align: center;
+margin-top: 2px;
+padding-top: 70px;
+border: 1px solid rgb(32, 32, 32);
+border-radius: 7px;
+background-color:  rgba(1, 90, 35, 0.9);
+}
+.login input{
+margin-bottom: 25px;
+margin-left: 30px;
+padding: 25px;
+border: none;
+border-radius: 9px;
+width: 80%; 
+
+}
+
+
+/*==========================Doctor page==============================*/
+.doctor{
+    margin: auto;
+    text-align: center;
+    
+}
+.search input{
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+}
+.search{
+    padding: 10px;
+    border: 1px solid rgba(170, 139, 53, 0.8);
+    border-radius: 5px;
+    background-color: rgb(170, 139, 53, 0.7);
+    box-shadow: 2px 6px 7px 1px rgb(100, 100, 100);
+    padding: 20px 0;
+ }
+.patient input{
+    padding: 7px;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+.modal{
+    text-align: left;
+
+}
+.left , .right{
+    padding: 10px;
+    border: 1px solid rgba(170, 139, 53, 0.8);
+    border-radius: 5px;
+    background-color: rgb(170, 139, 53, 0.7);
+    box-shadow: 2px 6px 7px 1px rgb(100, 100, 100);
+    padding: 20px 0;
+}

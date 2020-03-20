@@ -1,0 +1,66 @@
+<div class="mt-4 col-13 " *ngIf="loaded">
+    <div class="card" style="width: 720px;font-size: medium;">
+        <div class="card-header">Create Drug</div>
+        <div class="card-body">
+            <form #updateForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="alert alert-danger" *ngIf="error">
+                    {{ error }}
+                </div>
+                <div class="alert alert-success" *ngIf="success">
+                    {{ success }}
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="name" class="form-control" id="name"  
+                            [(ngModel)]="form.name" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="quantity" class="col-sm-2 col-form-label">Quantity</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="quantity" class="form-control" id="quantity" 
+                            [(ngModel)]="form.quantity" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="expire_date" class="col-sm-2 col-form-label">Expire Date</label>
+                    <div class="col-sm-10">
+                        <input type="date" name="expire_date" class="form-control" id="expire_date"
+                            [(ngModel)]="form.expire_date" required />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="unit" class="col-sm-2 col-form-label">Unit</label>
+                    <div class="col-sm-10">
+                        <input type="number" name="unit" class="form-control" id="unit" 
+                            [(ngModel)]="form.unit" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="role" class="col-sm-2 col-form-label">Role</label>
+
+                    <div class="col-sm-10">
+                        <select name="role_id" id="role" class="form-control" [(ngModel)]="form.role_id" required>
+                            <option *ngFor="let role of roles" [value]="role.id" [selected]="role.selected">
+                                {{role.name}}</option>
+                        </select>
+                        
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    <div class="col-sm-10 offset-2">
+                        <button type="submit" class="btn btn-primary" [disabled]="!updateForm.valid">
+                            Update Drug
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

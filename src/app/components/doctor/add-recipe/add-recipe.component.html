@@ -1,0 +1,203 @@
+<div *ngIf="isSubmit">
+    === Patient Details ===
+    <table class="table table-bordered table-hover table-striped table-responsive-md btn-table">
+        <thead>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>national Id</td>
+                <td>nationality</td>
+                <td>mobile</td>
+                <td>age</td>
+                <td>diagnostic</td>
+
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.national_id}}</td>
+                <td>{{user.nationality}}</td>
+                <td>{{user.mobile}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.diagnostic}}</td>
+            </tr>
+            <tr *ngIf="!user">
+                <td colspan="6">No Data</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+    <br>
+    <hr>
+
+    <h3>drugs in recipe</h3>
+    <table class="table table-bordered table-hover table-striped table-responsive-md btn-table" *ngIf="loaded">
+        <thead>
+            <tr>
+                <th scope="col">Drug</th>
+                <th scope="col">dose</th>
+                <th scope="col">rotes</th>
+                <th scope="col">unit</th>
+                <th scope="col">duration</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let drug of drugInRecipe">
+                <th>{{drug.drug_name}}</th>
+                <th>{{drug.dose}}</th>
+                <td>{{drug.rotes}}</td>
+                <td>{{drug.unit}}</td>
+                <td>{{drug.duration}}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+
+    <div class="mt-4 col-10 ">
+        <div class="card" style="width: 720px;font-size: medium;">
+            <div class="card-header">Add Drug</div>
+            <div class="card-body">
+                <form #addDrugForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="alert alert-danger" *ngIf="error">
+                        {{ error }}
+                    </div>
+                    <div class="alert alert-success" *ngIf="success">
+                        {{ success }}
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="dose" class="col-sm-2 col-form-label">Dose</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="dose" class="form-control" id="dose" placeholder="dose"
+                                [(ngModel)]="drugForm.dose" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="rotes" class="col-sm-2 col-form-label">rotes</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="rotes" class="form-control" id="rotes" placeholder="rotes"
+                                [(ngModel)]="drugForm.rotes" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="unit" class="col-sm-2 col-form-label">unit</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="unit" class="form-control" id="unit" placeholder="unit"
+                                [(ngModel)]="drugForm.unit" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="duration" class="col-sm-2 col-form-label">duration</label>
+                        <div class="col-sm-10">
+                            <input type="number" name="duration" class="form-control" id="duration"
+                                placeholder="duration" [(ngModel)]="drugForm.duration" required />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="drug_id" class="col-sm-2 col-form-label">Drug</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="drug_id" list="drugs" autocomplete="off" class="form-control"  [(ngModel)]="drugForm.drug_name" >
+                            <datalist  id="drugs" >
+                                <option *ngFor="let drug of drugs" value="{{drug.name}}"  >
+                                </option>
+                            </datalist>
+                            <!-- <input type="text" class="form-control" autocomplete="off" id="drug"
+                                (keyup)="onKeyUp($event)" placeholder="Drug"  />
+                            <div>
+                                <select name="drug_id" id="drug" class="form-control" [(ngModel)]="drugForm.drug_id">
+                                    <option *ngFor="let drug of filteredDrugs" [value]="drug.id"
+                                        [selected]="drug.selected">
+                                        {{drug.name}}
+                                    </option>
+                                </select> 
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10 offset-2">
+                            <button type="submit" class="btn btn-primary" [disabled]="!addDrugForm.valid">
+                                add Drug
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <hr>
+    <div class="mt-4 col-10 ">
+        <div class="card" style="width: 720px;font-size: medium;">
+            <div class="card-header">Recipe</div>
+            <div class="card-body">
+                <form #recipeAddForm="ngForm" (ngSubmit)="onSubmitRecipe()">
+                    <div class="alert alert-danger" *ngIf="error">
+                        {{ error }}
+                    </div>
+                    <div class="alert alert-success" *ngIf="success">
+                        {{ success }}
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-2 col-form-label">Recipe Title</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="title" class="form-control" id="title" placeholder="title"
+                                [(ngModel)]="recipeForm.title" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="end_date" class="col-sm-2 col-form-label">Recipe End Date</label>
+                        <div class="col-sm-10">
+                            <input type="date" name="end_date" class="form-control" id="end_date" placeholder="end_date"
+                                [(ngModel)]="recipeForm.end_date" required />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="notes" class="col-sm-2 col-form-label">Notes</label>
+                        <div class="col-sm-10">
+                            <textarea name="notes" class="form-control" id="notes" cols="30" rows="10"
+                                [(ngModel)]="recipeForm.notes" required></textarea>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row">
+                        <label for="drug_id" class="col-sm-2 col-form-label">Department</label>
+                        <div class="col-sm-10">
+                            <select name="dept_id" id="dept_id" class="form-control" [(ngModel)]="recipeForm.dept_id"
+                                required>
+                                <option *ngFor="let dept of departments" value="{{dept.id}}" [selected]="dept.selected">
+                                    {{dept.name}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10 offset-2">
+                            <button type="submit" class="btn btn-primary" [disabled]="!recipeAddForm.valid">
+                                Submit Recipe
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

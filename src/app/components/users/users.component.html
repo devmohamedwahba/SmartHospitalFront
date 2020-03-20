@@ -1,0 +1,39 @@
+<h3>Users</h3>
+<div class="alert alert-success" *ngIf="success">
+    {{ success }}
+</div>
+<table class="table table-bordered table-hover table-striped table-responsive-md btn-table">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>Email</td>
+            <td>Name</td>
+            <td>Role</td>
+            <td>edit</td>
+            <td>Delete</td>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.id}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.user_role}}</td>
+            <td>
+                <button class="btn btn-primary" [routerLink]="['edit-user', user.id]">Edit</button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteUser(user.id)">delete</button>
+            </td>
+
+
+        </tr>
+        <tr *ngIf="!users">
+            <td colspan="6">No Users Exist</td>
+        </tr>
+
+    </tbody>
+
+</table>

@@ -1,0 +1,12 @@
+<nav class="navbar navbar-expand navbar-dark bg-primary" >
+  <div class="container" style="margin: 0px 45px;min-width: -webkit-fill-available">
+    <a routerLink="/profile" class="navbar-brand">Smart  Hospital</a>
+    <div>
+      <ul class="navbar-nav" >
+            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
+              <a href="#" (click)="logout($event)" class="nav-link" *ngIf="loggedIn">LogOut</a>
+            </li>
+      </ul> 
+    </div>
+  </div>
+</nav>

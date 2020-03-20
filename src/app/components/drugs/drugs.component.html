@@ -1,0 +1,42 @@
+<h3>Drugs</h3>
+<div class="alert alert-success" *ngIf="success">
+    {{ success }}
+</div>
+<table class="table table-bordered table-hover table-striped table-responsive-md btn-table">
+    <thead>
+        <tr>
+            <td>id</td>
+            <td>name</td>
+            <td>quantity</td>
+            <td>expire_date</td>
+            <td>unit</td>
+            <td>role</td>
+            <td>edit</td>
+            <td>delete</td>
+
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let drug of drugs">
+            <td>{{drug.id}}</td>
+            <td>{{drug.name}}</td>
+            <td>{{drug.quantity}}</td>
+            <td>{{drug.expire_date}}</td>
+            <td>{{drug.unit}}</td>
+            <td>{{drug.role_id}}</td>
+            <td class="btn btn-primary" [routerLink]="['edit-drug', drug.id]">Edit</td>
+            <td>
+                <button class="btn btn-danger" (click)="deletedrug(drug.id)">delete</button>
+            </td>
+
+
+        </tr>
+        <tr *ngIf="!drugs">
+            <td colspan="6">No Drugs Exist</td>
+        </tr>
+
+    </tbody>
+
+</table>

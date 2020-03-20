@@ -1,0 +1,85 @@
+<div class="container">
+    <div style="width: 920px;font-size: medium;">
+        <div class="mt-4 col-8 offset-2">
+            <div class="card">
+                <div class="card-header">Search</div>
+                <div class="card-body">
+                    <form #searchForm="ngForm" (ngSubmit)="onSubmit()">
+                        <div class="alert alert-danger" *ngIf="error">
+                            {{ error }}
+                        </div>
+                        <div class="form-group row">
+                            <label for="search" class="col-sm-2 col-form-label">National id</label>
+                            <div class="col-sm-10">
+                                <input type="number" name="national_id" class="form-control" id="search"
+                                    [(ngModel)]="form.national_id" required />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-10 offset-2">
+                                <button type="submit" class="btn btn-primary" [disabled]="!searchForm.valid">
+                                    search
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div>
+
+    </div>
+
+
+    <div *ngIf="isSubmit">
+        <table class="table table-bordered table-hover table-striped table-responsive-md btn-table">
+            <thead>
+                <tr>
+                    <td>id</td>
+                    <td>name</td>
+                    <td>national Id</td>
+                    <td>nationality</td>
+                    <td>mobile</td>
+                    <td>age</td>
+                    <td>diagnostic</td>
+                    <td>doctor</td>
+                    <td>Recipe</td>
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.national_id}}</td>
+                    <td>{{user.nationality}}</td>
+                    <td>{{user.mobile}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.diagnostic}}</td>
+                    <td *ngFor="let detail of user.patient_details">
+                        {{detail.doctor_id}}
+                    </td>
+                    <td *ngFor="let detail of user.patient_details" >
+                    <button *ngIf="detail.recipe_id != ''" class="btn btn-primary" (click)="showRecipe(detail.recipe_id)">Recipe</button>
+                    <button disabled *ngIf="detail.recipe_id == ''" class="btn btn-primary">No Recipe Foound</button>
+                    
+
+
+                    </td>
+
+
+                </tr>
+                <tr *ngIf="!user">
+                    <td colspan="6">No Data</td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>

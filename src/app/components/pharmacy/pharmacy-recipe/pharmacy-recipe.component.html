@@ -1,0 +1,59 @@
+
+<p>pharmacy</p>
+<div *ngIf="loaded">
+    <span>id : </span>{{recipe.id}}<br>
+    <span>title : </span>{{recipe.title}}<br>
+    <span>start date: </span>{{recipe.start_date}}<br>
+    <span>end date: </span>{{recipe.end_date}}<br>
+    <span>notes: </span>{{recipe.notes}}<br>
+    <h4>Drugs</h4>
+    <h4 *ngFor="let drug of recipe.drugs">
+        <span>drug : </span>{{drug.drug_details[0].name}}
+        <span>dose: </span>{{drug.dose}}
+        <span>unit: </span>{{drug.unit}}
+        <span>duration : </span>{{drug.duration}}
+        <span>rotes : </span>{{drug.rotes}}
+    </h4>
+
+
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="spendRecipe(recipe.id)">
+        Spend Recipe
+    </button>
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Drug Name</th>
+                                <th>Drug Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let drug of drugsDetails">
+                                <td>{{drug.drug_name}}</td>
+                                <td>{{drug.quantity}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" [routerLink]="['/pharmacy']" routerLinkActive="router-link-active" >Back To Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

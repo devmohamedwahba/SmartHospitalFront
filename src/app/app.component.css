@@ -1,0 +1,6 @@
+.container{
+    margin: 0px;
+    padding: 0px;
+    width: -webkit-fill-available;
+    max-width: fit-content;
+}

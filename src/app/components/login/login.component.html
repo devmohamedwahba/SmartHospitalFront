@@ -1,0 +1,41 @@
+
+    
+<div >
+    <section class="content">
+        <div class="col-12 d-flex justify-content-between">
+            <img src="assets/img/1200px-Saudi_Ministry_of_Health_Logo.svg.png" class="logo img-responsive ml-5">
+            <img src="assets/img/pattern.png" class="pattern img-responsive w-75">
+        </div>
+        <div class="login">
+            <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="alert alert-danger" *ngIf="error">
+                    {{ error }}
+                </div>
+                <div class="form-group row">
+                     <!-- <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label> -->
+                    <div class="col-sm-12">
+                        <input placeholder="Email" type="email" name="email" class="form-control" id="inputEmail3" [(ngModel)]="form.email"
+                            required />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <!-- <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label> -->
+                    <div class="col-sm-12">
+                        <input placeholder="Password" type="password" name="password" class="form-control" id="inputPassword3"
+                            [(ngModel)]="form.password" required />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-8 offset-2">
+                        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
+                            Sign in
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </section>
+    
+</div>
