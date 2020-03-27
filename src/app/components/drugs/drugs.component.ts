@@ -9,8 +9,10 @@ import { Drug } from 'src/app/interfaces/drug';
   styleUrls: ['./drugs.component.css']
 })
 export class DrugsComponent implements OnInit {
-  public drugs: Drug[];
+  public drugs: any[];
   public success;
+
+  public filteredArray= [];
 
   constructor(private adminService: AdminService,
     private route: ActivatedRoute) { }
@@ -20,11 +22,17 @@ export class DrugsComponent implements OnInit {
 
   }
 
+  onSearch(search) {
+    let input = search.target.value;
+    this.filteredArray = this.drugs.filter(word => word.name.startsWith(input));
+
+  }
+
   getDrugs() {
 
     this.adminService.getAllDrugs().subscribe(
       data => {
-        this.drugs = data;
+        this.filteredArray = this.drugs = data;
       },
       error => {
         console.log(error);

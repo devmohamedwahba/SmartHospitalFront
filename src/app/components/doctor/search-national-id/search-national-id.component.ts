@@ -48,4 +48,10 @@ export class SearchNationalIdComponent implements OnInit {
     this.error = error.error.message;
   }
 
+  addRecipe(user) {
+    console.log(user)
+    this.router.navigate([`/doctor/add-recipe/${user.id}`]);
+  }
+
+
 }

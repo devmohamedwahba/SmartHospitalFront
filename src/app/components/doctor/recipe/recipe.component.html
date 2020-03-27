@@ -1,8 +1,8 @@
     <div *ngIf="loaded">
-    <span>id : </span>{{recipe.id}}<br>
+    no of recipe <span>id : </span>{{recipe.id}}<br>
     <span>title : </span>{{recipe.title}}<br>
-    <span>start date: </span>{{recipe.start_date}}<br>
-    <span>end date: </span>{{recipe.end_date}}<br>
+    <span>start date: </span>{{recipe.start_date |date}}<br>
+    <span>end date: </span>{{recipe.end_date|date}}<br>
     <span>notes: </span>{{recipe.notes}}<br>
     <h4>Drugs</h4>
     <h4 *ngFor="let drug of recipe.drugs" >
@@ -14,5 +14,8 @@
 
 
     </h4>
+
+    <button (click)="print(recipe)" class="btn btn-primary">Print Recipe</button>
+    
 
     </div>

@@ -32,7 +32,8 @@ import { PharmacySideBarComponent } from './components/pharmacy/pharmacy-side-ba
 import { PharmacyRecipeComponent } from './components/pharmacy/pharmacy-recipe/pharmacy-recipe.component';
 import { DrugEditComponent } from './components/drug-edit/drug-edit.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
-import { DataTablesModule } from 'angular-datatables';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -71,9 +72,8 @@ import { DataTablesModule } from 'angular-datatables';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    DataTablesModule
-
-
+    BrowserAnimationsModule,
+ 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

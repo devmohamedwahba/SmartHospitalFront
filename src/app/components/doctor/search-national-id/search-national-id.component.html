@@ -11,8 +11,8 @@
                         <div class="form-group row">
                             <label for="search" class="col-sm-2 col-form-label">National id</label>
                             <div class="col-sm-10">
-                                <input type="number" name="national_id" class="form-control" id="search" [(ngModel)]="form.national_id"
-                                    required />
+                                <input type="number" name="national_id" class="form-control" id="search"
+                                    [(ngModel)]="form.national_id" required />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -62,11 +62,13 @@
                     <td>{{user.age}}</td>
                     <td>{{user.diagnostic}}</td>
                     <td *ngFor="let detail of user.patient_details">
-                        {{detail.doctor_id}}
+                        {{detail.doctor_name.username}}
                     </td>
                     <td *ngFor="let detail of user.patient_details">
-                        <button class="btn btn-primary" (click)="showRecipe(detail.recipe_id)">Recipe</button>
-
+                        <button *ngIf="detail.recipe_id" class="btn btn-primary" (click)="showRecipe(detail.recipe_id)">Recipe</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" (click)="addRecipe(user)">Add Recipe</button>
                     </td>
 
 

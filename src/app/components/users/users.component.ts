@@ -9,9 +9,10 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ["./users.component.css"]
 })
 export class UsersComponent implements OnInit {
-  public users: User[];
+  public users: any;
   public id: number;
   public success;
+  filteredArray= [];
 
   constructor(
     private adminService: AdminService,
@@ -23,12 +24,18 @@ export class UsersComponent implements OnInit {
 
   }
 
+  onSearch(search){
+    let input = search.target.value;
+    this.filteredArray = this.users.filter(word => word.username.startsWith(input));
+
+  }
+
 
   getUsers() {
-
+    
     this.adminService.getAllUsers().subscribe(
       data => {
-        this.users = data;
+        this.filteredArray = this.users = data;
       },
       error => {
         console.log(error);

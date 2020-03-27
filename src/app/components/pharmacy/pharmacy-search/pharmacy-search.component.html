@@ -62,12 +62,12 @@
                     <td>{{user.age}}</td>
                     <td>{{user.diagnostic}}</td>
                     <td *ngFor="let detail of user.patient_details">
-                        {{detail.doctor_id}}
+                        <p>{{detail.doctor_name.username}}</p><br>
                     </td>
                     <td *ngFor="let detail of user.patient_details">
                         <button *ngIf="detail.recipe_id != ''" class="btn btn-primary"
                             (click)="showRecipe(detail.recipe_id)">Recipe</button>
-                        <button disabled *ngIf="detail.recipe_id == ''" class="btn btn-primary">No Recipe Foound</button>
+                        <!-- <button disabled *ngIf="detail.recipe_id == ''" class="btn btn-primary">No Recipe Foound</button> -->
                     </td>
 
 

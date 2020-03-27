@@ -36,4 +36,9 @@ export class RecipeComponent implements OnInit {
     )
   }
 
+  print(recipe){
+    console.log(recipe);
+    alert('under implementation')
+  }
+
 }

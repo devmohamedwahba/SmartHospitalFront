@@ -1,6 +1,8 @@
 
+<div class="container" id="component1">
 <p>pharmacy</p>
 <div *ngIf="loaded">
+
     <span>id : </span>{{recipe.id}}<br>
     <span>title : </span>{{recipe.title}}<br>
     <span>start date: </span>{{recipe.start_date}}<br>
@@ -14,16 +16,32 @@
         <span>duration : </span>{{drug.duration}}
         <span>rotes : </span>{{drug.rotes}}
     </h4>
+    <!-- <div *ngFor="let item of recipe.recipe_spend">
+        <p>{{item.created_at|date}}</p>
+    </div> -->
+
+    <button type="button" *ngIf="recipe.recipe_spend.length == 0" class="btn btn-primary" data-toggle="modal"
+        data-target="#exampleModal" (click)="spendRecipe(recipe.id)">
+        Spend Recipe
+    </button>
+    <button type="button" *ngIf="recipe.recipe_spend.length > 0 " class="btn btn-primary">
+        Recipe Already Spend
+    </button>
+</div>
+
+    
 
 
 
 
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="spendRecipe(recipe.id)">
-        Spend Recipe
-    </button>
+  
+
+    <hr>
+        <button (click)="printComponent('component1')" class="btn btn-primary">Print Recipe</button>
+
     
-    <!-- Modal -->
+    <div class="container" id="component2">
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -34,7 +52,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table">
+                    <!-- <div class="alert alert-danger" *ngIf="error">
+                        {{ error }}
+                    </div> -->
+    
+                    <table class="table" >
                         <thead>
                             <tr>
                                 <th>Drug Name</th>
@@ -42,18 +64,30 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <div *ngIf="!error">
                             <tr *ngFor="let drug of drugsDetails">
                                 <td>{{drug.drug_name}}</td>
                                 <td>{{drug.quantity}}</td>
+                            </tr>
+                            </div>
+                            <tr *ngIf="error"> 
+                                Not enough of this drug
+                                <div *ngFor="let stockDrug of stockDrugs">
+                                <span>{{stockDrug.name}}</span>
+                                </div>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" [routerLink]="['/pharmacy']" routerLinkActive="router-link-active" >Back To Dashboard</button>
+                    <button type="button" class="btn btn-secondary"  (click)="printComponent('component2')">Print</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" [routerLink]="['/pharmacy']"
+                        routerLinkActive="router-link-active">Back To Dashboard</button>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    <!-- Modal -->
+    
 </div>

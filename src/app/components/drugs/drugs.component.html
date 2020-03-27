@@ -2,6 +2,9 @@
 <div class="alert alert-success" *ngIf="success">
     {{ success }}
 </div>
+<span>Serach in Drugs Name</span>
+<input type="text" name="search" id="" class="form-control m-4" (input)="onSearch($event)">
+
 <table class="table table-bordered table-hover table-striped table-responsive-md btn-table">
     <thead>
         <tr>
@@ -19,7 +22,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let drug of drugs">
+        <tr *ngFor="let drug of filteredArray">
             <td>{{drug.id}}</td>
             <td>{{drug.name}}</td>
             <td>{{drug.quantity}}</td>

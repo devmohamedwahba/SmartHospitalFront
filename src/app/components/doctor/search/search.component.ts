@@ -48,4 +48,9 @@ export class SearchComponent implements OnInit {
     this.error = error.error.message;
   }
 
+  addRecipe(user) {
+    console.log(user)
+    this.router.navigate([`/doctor/add-recipe/${user.id}`]);
+  }
+
 }
